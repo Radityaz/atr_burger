@@ -23,7 +23,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text("Ini SplashScreen")),
+      body: Center(child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+        Container(color: Colors.black, width: 70, height: 70,),
+        SizedBox(height: 10,),
+        Text("ATR Burger")
+
+      ],)),
     );
   }
 }

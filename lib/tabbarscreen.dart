@@ -13,6 +13,7 @@ class TabBarScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          title: Text("Order Up"),
           elevation: 0,
           automaticallyImplyLeading: false,
           bottom: TabBar(tabs: [

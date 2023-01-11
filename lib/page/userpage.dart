@@ -8,7 +8,7 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
         return Scaffold(
-      body: Column(
+        body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(child: Text("Ini Usersetting")),
