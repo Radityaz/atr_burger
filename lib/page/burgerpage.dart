@@ -1,10 +1,13 @@
+import 'dart:ui';
+
+import 'package:atr_burger/model/productmodel.dart';
 import 'package:atr_burger/page/descriptionpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class BurgerPage extends StatelessWidget {
-  const BurgerPage({super.key});
+class BurgerSection extends StatelessWidget {
+  const BurgerSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,21 @@ class BurgerPage extends StatelessWidget {
             mainAxisExtent: 200),
         itemCount: 6,
         itemBuilder: (BuildContext context, int index) {
-          return InkWell(
+          return CatalogProductCart(index: index);
+        },
+      ),
+    )
+    );
+  }
+}
+
+class CatalogProductCart extends StatelessWidget {
+  final int index;
+  CatalogProductCart({super.key,required this.index});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => DescriptionPage()));
@@ -30,9 +47,9 @@ class BurgerPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    color: Colors.black,
                     width: 110,
                     height: 110,
+                    child: Image.asset(Product.products[index].image, fit: BoxFit.cover, ),
                   ),
                   Divider(
                     thickness: 2,
@@ -41,33 +58,30 @@ class BurgerPage extends StatelessWidget {
                     endIndent: 10,
                   ),
                   Container(
-                      margin: EdgeInsets.only(left: 10),
+                      margin: EdgeInsets.only(left: 10,bottom: 5),
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "title",
+                        "${Product.products[index].name}",
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       )),
                   Container(
                       margin: EdgeInsets.only(left: 10),
                       alignment: Alignment.centerLeft,
-                      child: Text("Subtitle",
+                      child: Text("${Product.products[index].description}",
                           style: TextStyle(
-                            fontSize: 10,
+                            fontSize: 9,
                           ))),
                   Container(
                       margin: EdgeInsets.only(right: 10),
                       alignment: Alignment.centerRight,
-                      child: Text("Price",
+                      child: Text("${Product.products[index].price} K",
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold)))
                 ],
               ),
             ),
           );
-        },
-      ),
-    )
-    );
   }
 }
+

@@ -1,5 +1,5 @@
-import 'package:atr_burger/page/BurgerPage.dart';
-import 'package:atr_burger/page/DrinkPage.dart';
+import 'package:atr_burger/page/burgerpage.dart';
+import 'package:atr_burger/page/drinkpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -13,7 +13,13 @@ class TabBarScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Order Up"),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("GRAB YOUR",style: TextStyle(fontWeight: FontWeight.bold),),
+              Text("Favorite burger and drink.",style: TextStyle(fontSize: 12),)
+            ],
+          ),
           elevation: 0,
           automaticallyImplyLeading: false,
           bottom: TabBar(tabs: [
@@ -21,8 +27,8 @@ class TabBarScreen extends StatelessWidget {
           Tab(text: "Drinks",)
         ]),),
         body: TabBarView(children: [
-          BurgerPage(),
-          DrinkPage()
+          BurgerSection(),
+          DrinkSection()
         ]),
       ),
     );

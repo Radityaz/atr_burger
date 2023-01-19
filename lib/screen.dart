@@ -24,7 +24,7 @@ class _ScreenState extends State<Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("ATR Burger"),automaticallyImplyLeading: false,),
+      appBar: AppBar( elevation: 0, title: Text("ATR Burger"),automaticallyImplyLeading: false,),
       body: Center(child: widgetList[_CurrentIndex]),
       bottomNavigationBar: BottomNavigationBar(
         //currentIndex = the selected item from navigation bar
