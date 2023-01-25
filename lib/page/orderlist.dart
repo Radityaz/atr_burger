@@ -1,10 +1,15 @@
+import 'package:atr_burger/controller/countercontroller.dart';
+import 'package:atr_burger/model/productmodel.dart';
 import 'package:atr_burger/page/payment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 
 class OrderList extends StatelessWidget {
-  const OrderList({super.key});
+   OrderList({super.key});
+    final counterC = Get.put(CounterController());
+  final CounterController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -30,55 +35,12 @@ class OrderList extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(left: 15, right: 15, top: 15),
               child: ListView.separated(
-                itemCount: 15,
+                itemCount: controller.products.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    // color: Colors.amber,
-                    height: MediaQuery.of(context).size.height * 0.10,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          color: Colors.black,
-                          width: MediaQuery.of(context).size.width * 0.25,
-                        ),
-                        Container(
-                          // color: Colors.blue,
-                          width: MediaQuery.of(context).size.width * 0.30,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Title",
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                              Text("Price")
-                            ],
-                          ),
-                        ),
-                        Container(
-                            child: Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.remove_circle),
-                            ),
-                            Container(
-                                margin: EdgeInsets.only(left: 10, right: 10),
-                                child: Text(
-                                  "0",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                            IconButton(
-                                onPressed: () {}, icon: Icon(Icons.add_circle))
-                          ],
-                        ))
-                      ],
-                    ),
+                  return CartProductCart(
+                    controller: controller,
+                    product: controller.products.keys.toList()[index],
+                    index: index,
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) {
@@ -119,6 +81,73 @@ class OrderList extends StatelessWidget {
             )
           ],
         ));
+  }
+}
+
+class CartProductCart extends StatelessWidget {
+  final CounterController controller;
+  final Product product;
+  final int index;
+  const CartProductCart({
+    Key? key,
+  required this.controller,
+  required this.product,
+  required this.index,
+
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // color: Colors.amber,
+      height: MediaQuery.of(context).size.height * 0.10,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.25,
+            child: Image.asset(
+              product.image
+            ),
+          ),
+          Container(
+            // color: Colors.blue,
+            width: MediaQuery.of(context).size.width * 0.30,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  product.name,
+                  style: TextStyle(
+                      fontSize: 13, fontWeight: FontWeight.bold),
+                ),
+                Text(product.price.toString() + " K")
+              ],
+            ),
+          ),
+          Container(
+              child: Row(
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.remove_circle),
+              ),
+              Container(
+                  margin: EdgeInsets.only(left: 10, right: 10),
+                  child: Text(
+                    "0",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  )),
+              IconButton(
+                  onPressed: () {}, icon: Icon(Icons.add_circle))
+            ],
+          ))
+        ],
+      ),
+    );
   }
 }
 

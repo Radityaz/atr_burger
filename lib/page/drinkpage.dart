@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
+import '../controller/countercontroller.dart';
 import '../model/productmodel.dart';
 import 'descriptionpage.dart';
 
@@ -32,13 +35,15 @@ Widget build(BuildContext context) {
 class CatalogProductCart extends StatelessWidget {
   final int index;
   CatalogProductCart({super.key,required this.index});
+  final counterC = Get.put(CounterController());
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => DescriptionPage()));
+                  MaterialPageRoute(builder: (context) => DescriptionPage(Index: index)));
+                  counterC.reset();
             },
             child: Container(
               // color: Colors.amber,

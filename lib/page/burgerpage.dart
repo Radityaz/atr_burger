@@ -1,14 +1,16 @@
 import 'dart:ui';
 
+import 'package:atr_burger/controller/countercontroller.dart';
 import 'package:atr_burger/model/productmodel.dart';
 import 'package:atr_burger/page/descriptionpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class BurgerSection extends StatelessWidget {
-  const BurgerSection({super.key});
-
+  BurgerSection({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +34,7 @@ class BurgerSection extends StatelessWidget {
 
 class CatalogProductCart extends StatelessWidget {
   final int index;
+  final counterC = Get.put(CounterController());
   CatalogProductCart({super.key,required this.index});
 
   @override
@@ -39,7 +42,8 @@ class CatalogProductCart extends StatelessWidget {
     return InkWell(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => DescriptionPage()));
+                  MaterialPageRoute(builder: (context) => DescriptionPage(Index: index)));
+                  counterC.reset();
             },
             child: Container(
               // color: Colors.amber,

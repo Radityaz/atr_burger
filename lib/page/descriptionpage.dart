@@ -1,11 +1,21 @@
 import 'dart:ui';
 
+import 'package:atr_burger/controller/countercontroller.dart';
+import 'package:atr_burger/model/productmodel.dart';
+import 'package:atr_burger/page/orderlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 
 class DescriptionPage extends StatelessWidget {
-  const DescriptionPage({super.key});
+  DescriptionPage({required this.Index});
+  // buat final untuk memanggil controller
+  //final %nama% = Get.put(%nama class controller%);
+  final counterC = Get.put(CounterController());
+  int price = 25;
+
+  int Index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +31,9 @@ class DescriptionPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    color: Colors.black,
                     height: 240,
                     width: 240,
+                    child: Image.asset(Product.products[Index].image, fit: BoxFit.contain,),
                   )
                 ],
               )),
@@ -41,7 +51,7 @@ class DescriptionPage extends StatelessWidget {
                         padding: EdgeInsets.only(left: 15),
                         width: MediaQuery.of(context).size.width * 0.50,
                         child: Text(
-                          "TITLE",
+                          Product.products[Index].name,
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
@@ -50,7 +60,7 @@ class DescriptionPage extends StatelessWidget {
                         padding: EdgeInsets.only(right: 15),
                         alignment: Alignment.centerRight,
                         width: MediaQuery.of(context).size.width * 0.50,
-                        child: Text("VAR KCAL"),
+                        child: Text(Product.products[Index].calorie.toString() + "Kcal"),
                       ),
                     ],
                   ),
@@ -61,7 +71,7 @@ class DescriptionPage extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.15,
                   width: MediaQuery.of(context).size.width,
                   child: Text(
-                    "A burger made with lamb meat and special blue cheese, a perfect combination for sour and savory flavor. a great energy punch for protein, double the protein. Don't forget the puffy buns and oily garlic.",
+                    Product.products[Index].description,
                     maxLines: 5,
                     style: TextStyle(fontSize: 12),
                   ),
@@ -70,13 +80,45 @@ class DescriptionPage extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.10,
                   child: Row(
                     children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.50,
-                        child: Row(children: [
-                          IconButton(onPressed: () {}, icon: Icon(Icons.remove_circle,size: 30,),
-                          ),Container(margin: EdgeInsets.only(left: 35,right: 35), child: Text("0",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)),
-                          IconButton(onPressed: () {}, icon: Icon(Icons.add_circle,size: 30))
-                        ],)
+                      Align(
+                        child: Container(
+                            width: MediaQuery.of(context).size.width * 0.50,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                  alignment: Alignment.centerLeft,
+                                  onPressed: () {
+                                    counterC.decrement();
+                                  },
+                                  icon: Icon(
+                                    Icons.remove_circle,
+                                    size: 30,
+                                  ),
+                                  //Obx adalah sebuah class
+                                  //fungsi obx adalah untuk merubah tampilan suatu element di dalam dungsi obx
+                                  //untuk memanggil variable, jangan lupa tambahkan class controller lewat final variable di atas @override
+                                ),
+                                Container(
+                                  width: 65,
+                                    // margin: EdgeInsets.only(left: 30, right: 30),
+                                    child: Obx((() => Text(
+                                          "${counterC.productcount}",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        )))),
+                                IconButton(
+                                  alignment: Alignment.centerRight,
+                                    onPressed: () {
+                                      //nama class controller lalu void yang dituju
+                                      counterC.increment();
+                                    },
+                                    icon: Icon(Icons.add_circle, size: 30))
+                              ],
+                            )),
                       ),
                       Container(
                         padding: EdgeInsets.only(left: 15),
@@ -90,17 +132,24 @@ class DescriptionPage extends StatelessWidget {
                               "Total Price",
                               style: TextStyle(fontSize: 9),
                             ),
-                            Text("VAR IDR",
+                            Obx((() => Text("IDR ${counterC.productcount * Product.products[Index].price} K ",
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold))
+                                    fontSize: 18, fontWeight: FontWeight.bold))))
                           ],
                         ),
                       ),
-                      
                     ],
                   ),
                 ),
-                Container( margin: EdgeInsets.only(left: 15,right: 15), width: MediaQuery.of(context).size.width ,child: ElevatedButton(onPressed: () {}, child: Text("Add to Cart")))
+                Container(
+                    margin: EdgeInsets.only(left: 15, right: 15),
+                    width: MediaQuery.of(context).size.width,
+                    child: ElevatedButton(
+                        onPressed: () {
+
+                          counterC.addProduct(Product.products[Index]);
+                                                    // Get.to(OrderList());
+                        }, child: Text("Add to Cart")))
               ],
             ),
           )
