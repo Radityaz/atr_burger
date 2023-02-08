@@ -148,7 +148,6 @@ class DescriptionPage extends StatelessWidget {
                         onPressed: () {
 
                           counterC.addProduct(Product.products[Index]);
-                                                    // Get.to(OrderList());
                         }, child: Text("Add to Cart")))
               ],
             ),

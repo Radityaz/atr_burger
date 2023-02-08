@@ -10,6 +10,7 @@ class OrderList extends StatelessWidget {
    OrderList({super.key});
     final counterC = Get.put(CounterController());
   final CounterController controller = Get.find();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class OrderList extends StatelessWidget {
             ],
           ),
         ),
-        body: Stack(
+        body: Obx((() => Stack(
           children: [
             Container(
               margin: EdgeInsets.only(left: 15, right: 15, top: 15),
@@ -40,6 +41,7 @@ class OrderList extends StatelessWidget {
                   return CartProductCart(
                     controller: controller,
                     product: controller.products.keys.toList()[index],
+                    quantity: controller.products.values.toList()[index],
                     index: index,
                   );
                 },
@@ -68,7 +70,7 @@ class OrderList extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container( width: MediaQuery.of(context).size.width * 0.45, child: Text("TOTAL "),),
-                      Container( width: MediaQuery.of(context).size.width * 0.45, child: Text("PRICE",textAlign: TextAlign.right,style: TextStyle(fontWeight: FontWeight.bold),),)
+                      Container( width: MediaQuery.of(context).size.width * 0.45, child: Text(controller.listShoppingCartTotal() + " K", textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),),)
                     ],
                   ),
                 ),
@@ -80,18 +82,20 @@ class OrderList extends StatelessWidget {
               ],
             )
           ],
-        ));
+        ))));
   }
 }
 
 class CartProductCart extends StatelessWidget {
   final CounterController controller;
   final Product product;
+  final int quantity;
   final int index;
   const CartProductCart({
     Key? key,
   required this.controller,
   required this.product,
+  required this.quantity,
   required this.index,
 
   }) : super(key: key);
@@ -127,22 +131,27 @@ class CartProductCart extends StatelessWidget {
             ),
           ),
           Container(
+            width: MediaQuery.of(context).size.width * 0.35,
               child: Row(
             children: [
               IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.remove_circle),
+                onPressed: () {
+                  controller.removeproduct(product);
+                },
+                icon: Icon(Icons.remove_circle ),
               ),
               Container(
-                  margin: EdgeInsets.only(left: 10, right: 10),
+                  width: MediaQuery.of(context).size.width * 0.080,
                   child: Text(
-                    "0",
+                    "${quantity}",textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
                   )),
               IconButton(
-                  onPressed: () {}, icon: Icon(Icons.add_circle))
+                  onPressed: () {
+                    controller.addoneproduct(product);
+                  }, icon: Icon(Icons.add_circle))
             ],
           ))
         ],

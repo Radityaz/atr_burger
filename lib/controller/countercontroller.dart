@@ -27,9 +27,9 @@ class CounterController extends GetxController {
   //menambahkan barang
   void addProduct(Product product) {
     if (_products.containsKey(product)) {
-      _products[product] +=1;
+      _products[product] +=productcount.toInt();
     } else {
-      _products[product] = 1;
+      _products[product] = productcount.toInt();
     }
     Get.snackbar("Product Added", "You have added the ${product.name} to the cart");
     SnackPosition: SnackPosition.BOTTOM;
@@ -37,8 +37,36 @@ class CounterController extends GetxController {
   }
 
   //menemukan id barang di dalam _products
+ 
+
+  void addoneproduct(Product product) {
+      if (_products.containsKey(product)) {
+      _products[product] +=1;
+    } else {
+      _products[product] = 1;
+    }
+  }
+
+  //mengurangi barang
+  void removeproduct(Product product) {
+    if (_products.containsKey(product) && _products[product] == 1) {
+      _products.removeWhere((key, value) => key == product);
+    } else {
+      _products[product] -=1;
+    }
+  }
+
   get products => _products;
 
+  get ProductSubtotal => _products.entries.map((product) => product.key.price * product.value).toList();
+  
+get total => _products.entries.map((product) => product.key.price * product.value).toList().reduce((value, element) => value + element).toString();
 
-
+String listShoppingCartTotal() => products.isNotEmpty
+      ? products.entries
+          .map((product) => product.key.price! * product.value)
+          .toList()
+          .reduce((value, element) => value + element)
+          .toStringAsFixed(0)
+      : '0';
 }
