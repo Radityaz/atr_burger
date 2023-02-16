@@ -10,7 +10,11 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Color(0xff151515),
+      appBar: AppBar(
+        backgroundColor: Color(0xff151515),
+        elevation: 0,
+      ),
       body: Column(
         children: [
           Container(
@@ -23,9 +27,13 @@ class SignUpPage extends StatelessWidget {
               children: [
                 Text(
                   "Getting Started",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
-                Text("Create an Account For you", style: TextStyle(fontSize: 10)),
+                Text("Create an Account For you",
+                    style: TextStyle(fontSize: 10, color: Colors.white)),
               ],
             ),
           ),
@@ -37,31 +45,52 @@ class SignUpPage extends StatelessWidget {
               children: [
                 TextFormField(
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(vertical: 15),
-                    hintText: "Username",
-                    prefixIcon: Icon(Icons.people),
-                  ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 15),
+                      hintText: "Username",
+                      hintStyle: TextStyle(color: Color(0xffFFB103)),
+                      prefixIcon: Icon(
+                        Icons.people,
+                        color: Color(0xffFFB103),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 2, color: Color(0xffFFB103)))),
+                  style: TextStyle(color: Color(0xffFFB103)),
                 ),
                 SizedBox(
                   height: 30,
                 ),
                 TextFormField(
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(vertical: 15),
-                    hintText: "Password",
-                    prefixIcon: Icon(Icons.lock),
-                  ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 15),
+                      hintText: "Email",
+                      hintStyle: TextStyle(color: Color(0xffFFB103)),
+                      prefixIcon: Icon(
+                        Icons.mail,
+                        color: Color(0xffFFB103),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 2, color: Color(0xffFFB103)))),
+                  style: TextStyle(color: Color(0xffFFB103)),
                 ),
                 SizedBox(
                   height: 30,
                 ),
                 TextFormField(
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(vertical: 15),
-                    hintText: "Email",
-                    prefixIcon: Icon(Icons.mail),
-                  ),
-                )
+                      contentPadding: EdgeInsets.symmetric(vertical: 15),
+                      hintText: "Password",
+                      hintStyle: TextStyle(color: Color(0xffFFB103)),
+                      prefixIcon: Icon(
+                        Icons.lock,
+                        color: Color(0xffFFB103),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 2, color: Color(0xffFFB103)))),
+                  style: TextStyle(color: Color(0xffFFB103)),
+                ),
               ],
             ),
           ),
@@ -71,17 +100,17 @@ class SignUpPage extends StatelessWidget {
             child: Column(
               children: [
                 ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => Screen()));
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: MediaQuery.of(context).size.width,
-                      child: Text("SIGN UP"),
-                    )),
-                    SizedBox(height: 10,),
-
+                  style: ElevatedButton.styleFrom(primary: Color(0xffFFB103)),
+                  onPressed: () {Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>Screen()));}, 
+                  child: Container(
+                    alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width,
+                  child: Text("LOG IN",style: TextStyle(color: Color(0xff151515),fontWeight: FontWeight.bold),),  
+                  )
+                ),
+                SizedBox(
+                  height: 10,
+                ),
               ],
             ),
           )

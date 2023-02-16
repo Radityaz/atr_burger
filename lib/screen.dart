@@ -24,9 +24,13 @@ class _ScreenState extends State<Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( elevation: 0, title: Text("ATR Burger"),automaticallyImplyLeading: false,),
+      appBar: AppBar(backgroundColor: Color(0xff151515), elevation: 0, title: Text("ATR BURGER"),automaticallyImplyLeading: false,),
       body: Center(child: widgetList[_CurrentIndex]),
       bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Color(0xffFFB103),
+        backgroundColor: Color(0xff151515),
+        selectedIconTheme: IconThemeData(color: Color(0xffFFB103)),
         //currentIndex = the selected item from navigation bar
         currentIndex: _CurrentIndex,
         items:  const [

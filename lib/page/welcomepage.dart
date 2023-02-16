@@ -1,7 +1,6 @@
 import 'package:atr_burger/page/loginpage.dart';
 import 'package:atr_burger/page/signuppage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -10,7 +9,8 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("ATR Burger")),
+      backgroundColor: Color(0xff151515),
+      appBar: AppBar( backgroundColor: Color(0xff151515),elevation: 0  , title: Text("ATR BURGER",style: TextStyle(fontWeight: FontWeight.bold),)),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -23,26 +23,28 @@ class WelcomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text("BURGER\nON THE GO",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                Text("BURGER\nON THE GO",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
                 SizedBox(height: 10,),
-                Text("We make the best burger with fresh ingredient we\ndeliver to you from the click from your phone",style: TextStyle(fontSize: 12),),
-                SizedBox(height: 20,),
+                Text("We make the best burger with fresh ingredient we\ndeliver to you from the click from your phone",style: TextStyle(fontSize: 12,color: Colors.white),),
+                SizedBox(height: 10,),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Color(0xffFFB103)),
                   onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context)=>LoginPage()));}, 
                   child: Container(
                     alignment: Alignment.center,
                   width: MediaQuery.of(context).size.width,
-                  child: Text("LOG IN"),  
+                  child: Text("LOG IN",style: TextStyle(color: Color(0xff151515),fontWeight: FontWeight.bold),),  
                   )
                 ),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(side: const BorderSide(width: 3,color: Color(0xffFFB103)),primary: Color(0xff151515)),
                   onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context)=>SignUpPage()));}, 
                   child: Container(
                   alignment: Alignment.center,
                   width: MediaQuery.of(context).size.width,
-                  child: Text("SIGN UP"),  
+                  child: Text("SIGN UP",style: TextStyle(color: Color(0xffFFB103))),  
                   )
-                )
+                ),
               ],
             ),
           )

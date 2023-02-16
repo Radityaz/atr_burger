@@ -1,5 +1,6 @@
 import 'package:atr_burger/page/burgerpage.dart';
 import 'package:atr_burger/page/drinkpage.dart';
+import 'package:atr_burger/responsive/burgerview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -13,6 +14,7 @@ class TabBarScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xff151515),
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -26,8 +28,9 @@ class TabBarScreen extends StatelessWidget {
           Tab(text: "Burgers",),
           Tab(text: "Drinks",)
         ]),),
-        body: TabBarView(children: [
-          BurgerSection(),
+        body:
+        TabBarView(children: [
+          BurgerResponisve(),
           DrinkSection()
         ]),
       ),
