@@ -1,8 +1,11 @@
 import 'package:atr_burger/page/loginpage.dart';
 import 'package:atr_burger/page/signuppage.dart';
+import 'package:atr_burger/provider/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -35,14 +38,20 @@ class WelcomePage extends StatelessWidget {
                   child: Text("LOG IN"),  
                   )
                 ),
-                  ElevatedButton(
-                  onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context)=>SignUpPage()));}, 
-                  child: Container(
-                  alignment: Alignment.center,
-                  width: MediaQuery.of(context).size.width,
-                  child: Text("SIGN UP"),  
-                  )
-                )
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      onPrimary: Colors.black,
+                      minimumSize: Size(double.infinity, 50),
+                    ),
+                  icon: FaIcon(FontAwesomeIcons.google, color:Colors.red),
+                  label: Text('Sign Up with Google'),
+                  onPressed: () {
+                    final provider = 
+                        Provider.of<GoogleSignInProvider>(context, listen: false);
+                    provider.googleLogin();
+                  },
+                ),
               ],
             ),
           )
