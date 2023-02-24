@@ -15,18 +15,21 @@ class OrderList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff151515),
         appBar: AppBar(
           automaticallyImplyLeading: false,
+                backgroundColor: Color(0xff151515),
+                elevation: 0,
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "ON THE GO",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
               ),
               Text(
                 "See the food and drink you order.",
-                style: TextStyle(fontSize: 12),
+                style: TextStyle(fontSize: 12,color: Colors.white),
               )
             ],
           ),
@@ -48,8 +51,8 @@ class OrderList extends StatelessWidget {
                 separatorBuilder: (BuildContext context, int index) {
                   return Divider(
                     height: 10,
-                    thickness: 3,
-                    color: Colors.black,
+                    thickness: 2,
+                    color: Colors.white,
                   );
                 },
               ),
@@ -61,7 +64,6 @@ class OrderList extends StatelessWidget {
                   margin: EdgeInsets.only(left: 15,right:15),
                   alignment: Alignment.center,
                   height: MediaQuery.of(context).size.height * 0.12,
-                  color: Colors.white,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -69,13 +71,14 @@ class OrderList extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container( width: MediaQuery.of(context).size.width * 0.45, child: Text("TOTAL "),),
-                      Container( width: MediaQuery.of(context).size.width * 0.45, child: Text(controller.listShoppingCartTotal() + " K", textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),),)
+                      Container( width: MediaQuery.of(context).size.width * 0.45, child: Text("TOTAL ",style: TextStyle(color: Colors.white),),),
+                      Container( width: MediaQuery.of(context).size.width * 0.45, child: Text(controller.listShoppingCartTotal() + " K", textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),)
                     ],
                   ),
                 ),
                     ElevatedButton(
-                      onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (builder)=>Payment()));}, child: Container(width: MediaQuery.of(context).size.width, child: Text("Order Now",textAlign: TextAlign.center,),)),
+                      style: ElevatedButton.styleFrom(primary: Color(0xffFFB103)),
+                      onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (builder)=>Payment()));}, child: Container(width: MediaQuery.of(context).size.width, child: Text("ORDER NOW",textAlign: TextAlign.center,style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),)),
                     ],
                   )
                 ),
@@ -106,7 +109,7 @@ class CartProductCart extends StatelessWidget {
       // color: Colors.amber,
       height: MediaQuery.of(context).size.height * 0.10,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
             width: MediaQuery.of(context).size.width * 0.25,
@@ -124,9 +127,9 @@ class CartProductCart extends StatelessWidget {
                 Text(
                   product.name,
                   style: TextStyle(
-                      fontSize: 13, fontWeight: FontWeight.bold),
+                      fontSize: 13, fontWeight: FontWeight.bold,color: Colors.white),
                 ),
-                Text(product.price.toString() + " K")
+                Text(product.price.toString() + " K",style: TextStyle(color: Colors.white),)
               ],
             ),
           ),
@@ -138,7 +141,7 @@ class CartProductCart extends StatelessWidget {
                 onPressed: () {
                   controller.removeproduct(product);
                 },
-                icon: Icon(Icons.remove_circle ),
+                icon: Icon(Icons.remove_circle,color: Color(0xffFFB103), ),
               ),
               Container(
                   width: MediaQuery.of(context).size.width * 0.080,
@@ -146,12 +149,12 @@ class CartProductCart extends StatelessWidget {
                     "${quantity}",textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 20,
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.bold,color: Colors.white),
                   )),
               IconButton(
                   onPressed: () {
                     controller.addoneproduct(product);
-                  }, icon: Icon(Icons.add_circle))
+                  }, icon: Icon(Icons.add_circle,color: Color(0xffFFB103)))
             ],
           ))
         ],

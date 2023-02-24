@@ -8,8 +8,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
-class DescriptionPage extends StatelessWidget {
-  DescriptionPage({required this.Index});
+class DescriptionPageTablet extends StatelessWidget {
+  DescriptionPageTablet({required this.Index});
   // buat final untuk memanggil controller
   //final %nama% = Get.put(%nama class controller%);
   final counterC = Get.put(CounterController());
@@ -20,14 +20,15 @@ class DescriptionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff151515),
-      appBar: AppBar(backgroundColor: Color(0xff151515),elevation: 0,),
-      body: Column(
+      appBar: AppBar(),
+      body: Row(
         mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-              height: MediaQuery.of(context).size.height * 0.40,
-              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width * 0.50,
+              color: Colors.red,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -39,10 +40,11 @@ class DescriptionPage extends StatelessWidget {
                 ],
               )),
           Container(
-            color: Colors.black,
-            height: MediaQuery.of(context).size.height * 0.45,
-            width: MediaQuery.of(context).size.width,
+            color: Colors.grey,
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width * 0.50,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Container(
                   height: MediaQuery.of(context).size.height * 0.10,
@@ -54,14 +56,14 @@ class DescriptionPage extends StatelessWidget {
                         child: Text(
                           Product.products[Index].name,
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
+                              fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
                         padding: EdgeInsets.only(right: 15),
                         alignment: Alignment.centerRight,
                         width: MediaQuery.of(context).size.width * 0.50,
-                        child: Text(Product.products[Index].calorie.toString() + "Kcal",style: TextStyle(color: Colors.white),),
+                        child: Text(Product.products[Index].calorie.toString() + "Kcal"),
                       ),
                     ],
                   ),
@@ -74,7 +76,7 @@ class DescriptionPage extends StatelessWidget {
                   child: Text(
                     Product.products[Index].description,
                     maxLines: 5,
-                    style: TextStyle(fontSize: 12,color: Colors.white),
+                    style: TextStyle(fontSize: 12),
                   ),
                 ),
                 Container(
@@ -95,7 +97,6 @@ class DescriptionPage extends StatelessWidget {
                                   },
                                   icon: Icon(
                                     Icons.remove_circle,
-                                    color: Color(0xffFFB103),
                                     size: 30,
                                   ),
                                   //Obx adalah sebuah class
@@ -110,7 +111,7 @@ class DescriptionPage extends StatelessWidget {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontSize: 20,
-                                              fontWeight: FontWeight.bold,color: Colors.white),
+                                              fontWeight: FontWeight.bold),
                                         )))),
                                 IconButton(
                                   alignment: Alignment.centerRight,
@@ -118,7 +119,7 @@ class DescriptionPage extends StatelessWidget {
                                       //nama class controller lalu void yang dituju
                                       counterC.increment();
                                     },
-                                    icon: Icon(Icons.add_circle, size: 30,color: Color(0xffFFB103),))
+                                    icon: Icon(Icons.add_circle, size: 30))
                               ],
                             )),
                       ),
@@ -132,11 +133,11 @@ class DescriptionPage extends StatelessWidget {
                           children: [
                             Text(
                               "Total Price",
-                              style: TextStyle(fontSize: 9,color: Colors.white),
+                              style: TextStyle(fontSize: 9),
                             ),
                             Obx((() => Text("IDR ${counterC.productcount * Product.products[Index].price} K ",
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold,color: Colors.white))))
+                                    fontSize: 18, fontWeight: FontWeight.bold))))
                           ],
                         ),
                       ),
@@ -147,11 +148,10 @@ class DescriptionPage extends StatelessWidget {
                     margin: EdgeInsets.only(left: 15, right: 15),
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(primary: Color(0xffFFB103)),
                         onPressed: () {
 
                           counterC.addProduct(Product.products[Index]);
-                        }, child: Text("ADD TO CART",style: TextStyle(color: Color(0xff151515),fontWeight: FontWeight.bold),)))
+                        }, child: Text("Add to Cart")))
               ],
             ),
           )

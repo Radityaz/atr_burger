@@ -14,6 +14,7 @@ class DrinkSection extends StatelessWidget {
 
 Widget build(BuildContext context) {
     return Scaffold(
+            backgroundColor: Color(0xff151515),
         body: Container(
       margin: EdgeInsets.only(left: 15, right: 15),
       child: GridView.builder(
@@ -21,7 +22,7 @@ Widget build(BuildContext context) {
             crossAxisCount: 2,
             crossAxisSpacing: 15,
             mainAxisSpacing: 15,
-            mainAxisExtent: 200),
+            mainAxisExtent: 230),
         itemCount: 6,
         itemBuilder: (BuildContext context, int index) {
           return CatalogProductCart(index: index + 6);
@@ -57,7 +58,7 @@ class CatalogProductCart extends StatelessWidget {
                   ),
                   Divider(
                     thickness: 2,
-                    color: Colors.black,
+                    color: Colors.white,
                     indent: 10,
                     endIndent: 10,
                   ),
@@ -67,7 +68,7 @@ class CatalogProductCart extends StatelessWidget {
                       child: Text(
                         "${Product.products[index].name}",
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 15, fontWeight: FontWeight.bold,color: Color(0xffFFB103)),
                       )),
                   Container(
                       margin: EdgeInsets.only(left: 10),
@@ -75,13 +76,14 @@ class CatalogProductCart extends StatelessWidget {
                       child: Text("${Product.products[index].description}",
                           style: TextStyle(
                             fontSize: 9,
+                            color: Colors.white
                           ))),
                   Container(
                       margin: EdgeInsets.only(right: 10),
                       alignment: Alignment.centerRight,
                       child: Text("${Product.products[index].price} K",
                           style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold)))
+                              fontSize: 15, fontWeight: FontWeight.bold,color: Colors.white )))
                 ],
               ),
             ),

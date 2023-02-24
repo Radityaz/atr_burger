@@ -2,7 +2,6 @@ import 'package:atr_burger/page/loginpage.dart';
 import 'package:atr_burger/page/signuppage.dart';
 import 'package:atr_burger/provider/google_sign_in.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +12,8 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("ATR Burger")),
+      backgroundColor: Color(0xff151515),
+      appBar: AppBar( backgroundColor: Color(0xff151515),elevation: 0  , title: Text("ATR BURGER",style: TextStyle(fontWeight: FontWeight.bold),)),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -26,32 +26,27 @@ class WelcomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text("BURGER\nON THE GO",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                Text("BURGER\nON THE GO",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
                 SizedBox(height: 10,),
-                Text("We make the best burger with fresh ingredient we\ndeliver to you from the click from your phone",style: TextStyle(fontSize: 12),),
-                SizedBox(height: 20,),
+                Text("We make the best burger with fresh ingredient we\ndeliver to you from the click from your phone",style: TextStyle(fontSize: 12,color: Colors.white),),
+                SizedBox(height: 10,),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Color(0xffFFB103)),
                   onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context)=>LoginPage()));}, 
                   child: Container(
                     alignment: Alignment.center,
                   width: MediaQuery.of(context).size.width,
-                  child: Text("LOG IN"),  
+                  child: Text("LOG IN",style: TextStyle(color: Color(0xff151515),fontWeight: FontWeight.bold),),  
                   )
                 ),
-                  ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      onPrimary: Colors.black,
-                      minimumSize: Size(double.infinity, 50),
-                    ),
-                  icon: FaIcon(FontAwesomeIcons.google, color:Colors.red),
-                  label: Text('Sign Up with Google'),
-                  onPressed: () {
-                    final provider = 
-                        Provider.of<GoogleSignInProvider>(context, listen: false);
-                    provider.googleLogin();
-                  },
-                ),
+                  ElevatedButton(
+                  onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context)=>SignUpPage()));}, 
+                  child: Container(
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width,
+                  child: Text("SIGN UP"),  
+                  )
+                )
               ],
             ),
           )

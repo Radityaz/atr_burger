@@ -10,12 +10,11 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class BurgerSection extends StatelessWidget {
-  BurgerSection({super.key});
+class BurgerSectionTablet extends StatelessWidget {
+  BurgerSectionTablet({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff151515),
         body: Container(
       margin: EdgeInsets.only(left: 15, right: 15),
       child: GridView.builder(
@@ -49,42 +48,47 @@ class CatalogProductCart extends StatelessWidget {
             },
             child: Container(
               // color: Colors.amber,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                    width: 110,
-                    height: 110,
+                    
+                    width: 150,
+                    height: 150,
                     child: Image.asset(Product.products[index].image, fit: BoxFit.cover, ),
                   ),
-                  Divider(
-                    thickness: 2,
-                    color: Colors.white,
-                    indent: 10,
-                    endIndent: 10,
-                  ),
+                  VerticalDivider(thickness: 3, indent: 10, endIndent: 10, color: Colors.black, ),
                   Container(
-                      margin: EdgeInsets.only(left: 10,bottom: 5),
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "${Product.products[index].name}",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold,color: Color(0xffFFB103)),
-                      )),
-                  Container(
-                      margin: EdgeInsets.only(left: 10),
-                      alignment: Alignment.centerLeft,
-                      child: Text("${Product.products[index].description}",
+                    width: MediaQuery.of(context).size.width * 0.20,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                          Container(
+
+                        margin: EdgeInsets.only(bottom: 5),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "${Product.products[index].name}",
                           style: TextStyle(
-                            fontSize: 9,
-                            color: Colors.white
-                          ))),
-                  Container(
-                      margin: EdgeInsets.only(right: 10),
-                      alignment: Alignment.centerRight,
-                      child: Text("${Product.products[index].price} K",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold,color: Colors.white)))
+                              fontSize: 25, fontWeight: FontWeight.bold),
+                        )),
+                    Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text("${Product.products[index].description},",
+
+                            style: TextStyle(
+                              fontSize: 12,
+                            ))),
+                    Container(
+                        alignment: Alignment.centerRight,
+                        child: Text("${Product.products[index].price} K",
+                            style: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.bold)))
+                      ],
+                    ),
+                  )
+                  
                 ],
               ),
             ),

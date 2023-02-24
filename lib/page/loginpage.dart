@@ -10,7 +10,8 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Color(0xff151515),
+      appBar: AppBar(backgroundColor: Color(0xff151515), elevation: 0),
       body: Column(
         children: [
           Container(
@@ -23,9 +24,13 @@ class LoginPage extends StatelessWidget {
               children: [
                 Text(
                   "Welcome Back",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
                 ),
-                Text("Login to Continue", style: TextStyle(fontSize: 10)),
+                Text("Login to Continue",
+                    style: TextStyle(fontSize: 10, color: Colors.white)),
               ],
             ),
           ),
@@ -37,21 +42,35 @@ class LoginPage extends StatelessWidget {
               children: [
                 TextFormField(
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(vertical: 15),
-                    hintText: "Username",
-                    prefixIcon: Icon(Icons.people),
-                  ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 15),
+                      hintText: "Email",
+                      hintStyle: TextStyle(color: Color(0xffFFB103)),
+                      prefixIcon: Icon(
+                        Icons.people,
+                        color: Color(0xffFFB103),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 2, color: Color(0xffFFB103)))),
+                  style: TextStyle(color: Color(0xffFFB103)),
                 ),
                 SizedBox(
                   height: 30,
                 ),
                 TextFormField(
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(vertical: 15),
-                    hintText: "Password",
-                    prefixIcon: Icon(Icons.lock),
-                  ),
-                )
+                      contentPadding: EdgeInsets.symmetric(vertical: 15),
+                      hintText: "Password",
+                      hintStyle: TextStyle(color: Color(0xffFFB103)),
+                      prefixIcon: Icon(
+                        Icons.lock,
+                        color: Color(0xffFFB103),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 2, color: Color(0xffFFB103)))),
+                  style: TextStyle(color: Color(0xffFFB103)),
+                ),
               ],
             ),
           ),
@@ -61,21 +80,27 @@ class LoginPage extends StatelessWidget {
             child: Column(
               children: [
                 ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => Screen()));
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: MediaQuery.of(context).size.width,
-                      child: Text("LOG IN"),
-                    )),
-                    SizedBox(height: 10,),
+                  style: ElevatedButton.styleFrom(primary: Color(0xffFFB103)),
+                  onPressed: () {Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>Screen()));}, 
+                  child: Container(
+                    alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width,
+                  child: Text("LOG IN",style: TextStyle(color: Color(0xff151515),fontWeight: FontWeight.bold),),  
+                  )
+                ),
+                SizedBox(
+                  height: 10,
+                ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpPage()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SignUpPage()));
                   },
-                  child: Text("Dont Have Account?",style: TextStyle(decoration: TextDecoration.underline,fontSize: 11),),
+                  child: Text(
+                    "Dont Have Account?",
+                    style: TextStyle(
+                        decoration: TextDecoration.underline, fontSize: 11,color: Color(0xffFFB103)),
+                  ),
                 )
               ],
             ),
