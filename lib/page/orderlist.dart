@@ -78,7 +78,7 @@ class OrderList extends StatelessWidget {
                 ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(primary: Color(0xffFFB103)),
-                      onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (builder)=>Payment()));}, child: Container(width: MediaQuery.of(context).size.width, child: Text("ORDER NOW",textAlign: TextAlign.center,style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),)),
+                      onPressed: () {counterC.payproduct();}, child: Container(width: MediaQuery.of(context).size.width, child: Text("ORDER NOW",textAlign: TextAlign.center,style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),)),
                     ],
                   )
                 ),

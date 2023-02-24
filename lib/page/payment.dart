@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+
+import '../controller/countercontroller.dart';
 
 class Payment extends StatelessWidget {
-  const Payment({super.key});
+   Payment({super.key});
+   final counterC = Get.put(CounterController());
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +17,7 @@ class Payment extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(child: Text("Ini Payment")),
-          ElevatedButton(onPressed: () {Navigator.pop(context);}, child: Text("Proceed to buy"))
+          ElevatedButton(onPressed: () {counterC.paymentsuccess(); Navigator.pop(context);}, child: Text("Proceed to buy"))
         ],
       ),
     );

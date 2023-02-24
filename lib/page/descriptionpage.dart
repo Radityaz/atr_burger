@@ -144,14 +144,14 @@ class DescriptionPage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                    margin: EdgeInsets.only(left: 15, right: 15),
-                    width: MediaQuery.of(context).size.width,
-                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(primary: Color(0xffFFB103)),
-                        onPressed: () {
+                      margin: EdgeInsets.only(left: 15, right: 15),
+                      width: MediaQuery.of(context).size.width,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: Color(0xffFFB103)),
+                          onPressed: () {
 
-                          counterC.addProduct(Product.products[Index]);
-                        }, child: Text("ADD TO CART",style: TextStyle(color: Color(0xff151515),fontWeight: FontWeight.bold),)))
+                            counterC.addProduct(Product.products[Index]);
+                          }, child: Text("ADD TO CART",style: TextStyle(color: Color(0xff151515),fontWeight: FontWeight.bold),)))
               ],
             ),
           )

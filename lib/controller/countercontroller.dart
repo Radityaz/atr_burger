@@ -1,4 +1,6 @@
 import 'package:atr_burger/model/productmodel.dart';
+import 'package:atr_burger/page/payment.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 //getx class 
@@ -31,7 +33,7 @@ class CounterController extends GetxController {
     } else {
       _products[product] = productcount.toInt();
     }
-    Get.snackbar("Product Added", "You have added the ${product.name} to the cart");
+    Get.snackbar("Product Added", "You have added the ${product.name} to the cart",backgroundColor: Colors.black,colorText: Colors.white);
     SnackPosition: SnackPosition.BOTTOM;
     duration: Duration(seconds: 2);
   }
@@ -56,6 +58,23 @@ class CounterController extends GetxController {
     }
   }
 
+  void paymentsuccess() {
+    _products.value = {};
+    Get.snackbar("Thank you", "Please wait for your order to arrive",backgroundColor: Colors.black,colorText: Colors.white);
+    SnackPosition: SnackPosition.BOTTOM;
+    duration: Duration(seconds: 2);
+  }
+
+  void payproduct() {
+  if (products?.isEmpty ?? true) {
+    Get.snackbar("Cart Empty", "You need to add an product to continue",backgroundColor: Colors.black,colorText: Colors.white);
+    SnackPosition: SnackPosition.BOTTOM;
+    duration: Duration(seconds: 2);
+  } else {
+    Get.to(Payment());
+  }
+}
+
   get products => _products;
 
   get ProductSubtotal => _products.entries.map((product) => product.key.price * product.value).toList();
@@ -70,3 +89,4 @@ String listShoppingCartTotal() => products.isNotEmpty
           .toStringAsFixed(0)
       : '0';
 }
+

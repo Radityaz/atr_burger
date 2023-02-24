@@ -10,8 +10,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class BurgerSectionTablet extends StatelessWidget {
-  BurgerSectionTablet({super.key});
+class DrinkSectionTablet extends StatelessWidget {
+  DrinkSectionTablet({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +26,7 @@ class BurgerSectionTablet extends StatelessWidget {
             mainAxisExtent: 230),
         itemCount: 6,
         itemBuilder: (BuildContext context, int index) {
-          return CatalogProductCart(index: index);
+          return CatalogProductCart(index: index + 6);
         },
       ),
     )
@@ -58,7 +58,7 @@ class CatalogProductCart extends StatelessWidget {
                     height: 150,
                     child: Image.asset(Product.products[index].image, fit: BoxFit.cover, ),
                   ),
-                  VerticalDivider(thickness: 2, indent: 20, endIndent: 0, color: Colors.white, ),
+                  VerticalDivider(thickness: 2, indent: 20, endIndent: 20, color: Colors.white, ),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.20,
                     child: Column(
