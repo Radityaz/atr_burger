@@ -1,6 +1,7 @@
 import 'package:atr_burger/page/loginpage.dart';
 import 'package:atr_burger/page/signuppage.dart';
 import 'package:atr_burger/provider/google_sign_in.dart';
+import 'package:atr_burger/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -27,6 +28,7 @@ class _WelcomePageState extends State<WelcomePage> {
   Future<void> _handleSignIn() async {
     try {
       await _googleSignIn.signIn();
+      
     } catch (error) {
       print(error);
     }
@@ -135,21 +137,23 @@ class _WelcomePageState extends State<WelcomePage> {
                   )
                 ],
               )
-            : Container(
-                child: ListTile(
-                  leading: GoogleUserCircleAvatar(identity: _currentUser!),
-                  title: Text(_currentUser!.displayName ?? ''),
-                  subtitle: Text(_currentUser!.email),
-                  trailing: IconButton(
-                    onPressed: () {
-                      _googleSignIn.disconnect();
-                    },
-                    icon: Icon(Icons.logout),
-                  ),
-                ),
-              ));
+            : Screen());
   }
 }
+
+// Container(
+//                 child: ListTile(
+//                   leading: GoogleUserCircleAvatar(identity: _currentUser!),
+//                   title: Text(_currentUser!.displayName ?? ''),
+//                   subtitle: Text(_currentUser!.email),
+//                   trailing: IconButton(
+//                     onPressed: () {
+//                       _googleSignIn.disconnect();
+//                     },
+//                     icon: Icon(Icons.logout),
+//                   ),
+//                 ),
+//               )
 
 // class WelcomePage extends StatelessWidget {
 //   const WelcomePage({super.key});

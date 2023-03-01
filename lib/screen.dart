@@ -24,7 +24,6 @@ class _ScreenState extends State<Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Color(0xff151515), elevation: 0, title: Text("ATR BURGER"),automaticallyImplyLeading: false,),
       body: Center(child: widgetList[_CurrentIndex]),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.white,
