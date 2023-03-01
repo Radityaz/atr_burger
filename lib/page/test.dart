@@ -7,6 +7,7 @@ class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
+    //Ini buatan gw wkwkwk RIKO|HUHUY
   }
 }
 class Uhuhy extends StatefulWidget {
