@@ -1,4 +1,6 @@
 import 'package:atr_burger/model/productmodel.dart';
+import 'package:atr_burger/page/payment.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 //getx class 
@@ -31,13 +33,30 @@ class CounterController extends GetxController {
     } else {
       _products[product] = productcount.toInt();
     }
-    Get.snackbar("Product Added", "You have added the ${product.name} to the cart");
+    Get.snackbar("Product Added", "You have added the ${product.name} to the cart",colorText: Colors.white);
     SnackPosition: SnackPosition.BOTTOM;
     duration: Duration(seconds: 2);
   }
 
+  void clear() {
+    _products.value = {};
+    Get.snackbar("On Our way", "your order will arrive soon",colorText: Colors.white);
+    SnackPosition: SnackPosition.BOTTOM;
+    duration: Duration(seconds: 2);
+
+  }
   //menemukan id barang di dalam _products
  
+  void payment() {
+    if (_products?.isEmpty ?? true) {
+    Get.snackbar("Cart is Empty", "add a product to continue payment",colorText: Colors.white);
+    SnackPosition: SnackPosition.BOTTOM;
+    duration: Duration(seconds: 2);
+  } else {
+    Get.to(PaymentProccess());
+  }
+  }
+
 
   void addoneproduct(Product product) {
       if (_products.containsKey(product)) {

@@ -20,7 +20,8 @@ class DescriptionPageTablet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+            backgroundColor: Color(0xff151515),
+      appBar: AppBar(backgroundColor: Colors.black),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -28,19 +29,18 @@ class DescriptionPageTablet extends StatelessWidget {
           Container(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width * 0.50,
-              color: Colors.red,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    height: 240,
-                    width: 240,
+                    height: MediaQuery.of(context).size.height * 0.50,
+                    width: MediaQuery.of(context).size.width * 0.50,
                     child: Image.asset(Product.products[Index].image, fit: BoxFit.contain,),
                   )
                 ],
               )),
           Container(
-            color: Colors.grey,
+            color: Colors.black,
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width * 0.50,
             child: Column(
@@ -49,21 +49,20 @@ class DescriptionPageTablet extends StatelessWidget {
                 Container(
                   height: MediaQuery.of(context).size.height * 0.10,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                         padding: EdgeInsets.only(left: 15),
-                        width: MediaQuery.of(context).size.width * 0.50,
                         child: Text(
                           Product.products[Index].name,
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                              fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
                         ),
                       ),
                       Container(
                         padding: EdgeInsets.only(right: 15),
                         alignment: Alignment.centerRight,
-                        width: MediaQuery.of(context).size.width * 0.50,
-                        child: Text(Product.products[Index].calorie.toString() + "Kcal"),
+                        child: Text(Product.products[Index].calorie.toString() + "Kcal", style: TextStyle(color: Colors.white),),
                       ),
                     ],
                   ),
@@ -76,18 +75,20 @@ class DescriptionPageTablet extends StatelessWidget {
                   child: Text(
                     Product.products[Index].description,
                     maxLines: 5,
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 12,color: Colors.white),
                   ),
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.10,
+                  padding: EdgeInsets.only(left: 15, right: 15),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Align(
                         child: Container(
-                            width: MediaQuery.of(context).size.width * 0.50,
+                          width: MediaQuery.of(context).size.width * 0.25,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 IconButton(
@@ -97,21 +98,20 @@ class DescriptionPageTablet extends StatelessWidget {
                                   },
                                   icon: Icon(
                                     Icons.remove_circle,
-                                    size: 30,
+                                    size: 30,color: Color(0xffFFB103)
                                   ),
                                   //Obx adalah sebuah class
                                   //fungsi obx adalah untuk merubah tampilan suatu element di dalam dungsi obx
                                   //untuk memanggil variable, jangan lupa tambahkan class controller lewat final variable di atas @override
                                 ),
                                 Container(
-                                  width: 65,
                                     // margin: EdgeInsets.only(left: 30, right: 30),
                                     child: Obx((() => Text(
                                           "${counterC.productcount}",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontSize: 20,
-                                              fontWeight: FontWeight.bold),
+                                              fontWeight: FontWeight.bold,color: Colors.white),
                                         )))),
                                 IconButton(
                                   alignment: Alignment.centerRight,
@@ -119,25 +119,25 @@ class DescriptionPageTablet extends StatelessWidget {
                                       //nama class controller lalu void yang dituju
                                       counterC.increment();
                                     },
-                                    icon: Icon(Icons.add_circle, size: 30))
+                                    icon: Icon(Icons.add_circle, size: 30,color: Color(0xffFFB103)))
                               ],
                             )),
                       ),
                       Container(
+                        width: MediaQuery.of(context).size.width * 0.20,
                         padding: EdgeInsets.only(left: 15),
                         alignment: Alignment.centerLeft,
-                        width: MediaQuery.of(context).size.width * 0.50,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "Total Price",
-                              style: TextStyle(fontSize: 9),
+                              style: TextStyle(fontSize: 9,color: Colors.white),
                             ),
                             Obx((() => Text("IDR ${counterC.productcount * Product.products[Index].price} K ",
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold))))
+                                    fontSize: 18, fontWeight: FontWeight.bold,color: Colors.white))))
                           ],
                         ),
                       ),
@@ -148,10 +148,12 @@ class DescriptionPageTablet extends StatelessWidget {
                     margin: EdgeInsets.only(left: 15, right: 15),
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                                primary: Color(0xffFFB103)),
                         onPressed: () {
 
                           counterC.addProduct(Product.products[Index]);
-                        }, child: Text("Add to Cart")))
+                        }, child: Text("Add to Cart",style: TextStyle(color: Colors.black),)))
               ],
             ),
           )

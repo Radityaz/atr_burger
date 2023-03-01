@@ -1,6 +1,7 @@
 import 'package:atr_burger/page/burgerpage.dart';
 import 'package:atr_burger/page/drinkpage.dart';
 import 'package:atr_burger/responsive/burgerview.dart';
+import 'package:atr_burger/responsive/drinkviewpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -31,7 +32,7 @@ class TabBarScreen extends StatelessWidget {
         body:
         TabBarView(children: [
           BurgerResponisve(),
-          DrinkSection()
+          DrinkResponsive()
         ]),
       ),
     );

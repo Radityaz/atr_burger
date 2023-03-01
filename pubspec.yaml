@@ -88,6 +88,7 @@ flutter:
     - images/milkshake.png
     - images/bobamilktea.png
     - images/logo.png
+    - images/check.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
