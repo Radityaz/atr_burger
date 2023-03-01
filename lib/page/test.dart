@@ -9,3 +9,16 @@ class MyWidget extends StatelessWidget {
     return const Placeholder();
   }
 }
+class Uhuhy extends StatefulWidget {
+  const Uhuhy({super.key});
+
+  @override
+  State<Uhuhy> createState() => _UhuhyState();
+}
+
+class _UhuhyState extends State<Uhuhy> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
